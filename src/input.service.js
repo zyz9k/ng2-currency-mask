@@ -67,6 +67,8 @@ var InputService = (function () {
         }
         selectionEnd = keyCode == 46 || keyCode == 63272 ? selectionEnd + 1 : selectionEnd;
         selectionStart = keyCode == 8 ? selectionStart - 1 : selectionStart;
+		if (keyCode == 8 && this.rawValue[selectionStart] === this.options.thousands)
+			selectionStart -= 1;
         this.rawValue = this.rawValue.substring(0, selectionStart) + this.rawValue.substring(selectionEnd, this.rawValue.length);
         this.updateFieldValue(selectionStart);
     };
