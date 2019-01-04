@@ -21,6 +21,9 @@ var InputService = (function () {
         var _a = this.options, allowNegative = _a.allowNegative, decimal = _a.decimal, precision = _a.precision, prefix = _a.prefix, suffix = _a.suffix, thousands = _a.thousands;
         rawValue = isNumber ? new Number(rawValue).toFixed(precision) : rawValue;
         var onlyNumbers = rawValue.replace(/[^0-9]/g, "");
+	if (rawValue.toLowerCase() !== "nan" && /^0*$/.test(onlyNumbers)) {
+            return rawValue;
+        }
         if (!onlyNumbers) {
             return "";
         }
